@@ -24,8 +24,8 @@ function speedChange(gear){
 	speed /= 10;
 	media.playbackRate = speed;
 	media.defaultPlaybackRate = speed;
-	mv.pause();
-	mv.play();
+	media.pause();
+	media.play();
 	document.getElementById("speedmeter").innerHTML = "再生速度: " + String(speed);
 }
 
@@ -33,7 +33,14 @@ function speedChange(gear){
 function setVideo(){
 	var pass = document.getElementById("text").value;
 	console.log(pass);
-	var video = document.getElementById("mv");
-	video.src = pass;
+	var media = document.getElementById("mv");
+	media.src = pass;
 }
 
+
+function back(){
+	var media = document.getElementById("mv");
+	media.pause();
+	media.currentTime -= 10;
+	media.play();
+}

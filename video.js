@@ -1,6 +1,7 @@
 
 var speed = 1;
 
+//再生速度の制御部分
 function speedChange(gear){
 	var media = document.getElementById("mv");
 	switch(gear){
@@ -17,8 +18,6 @@ function speedChange(gear){
 			speed = 1;
 			break;
 	}
-
-
 	speed *= 10;
 	speed = Math.floor(speed);
 	speed /= 10;
@@ -30,17 +29,42 @@ function speedChange(gear){
 }
 
 
+
+//動画のパスが入力された時その動画をセットする
 function setVideo(){
 	var pass = document.getElementById("text").value;
 	console.log(pass);
 	var media = document.getElementById("mv");
 	media.src = pass;
+	document.getElementById("text").value = "";
+}
+function enter(){	//エンターキーでも反応するように
+	if (window.event.keyCode == 13){
+		setVideo();
+	}
 }
 
 
+//動画の再生時間（今みてるとこ）の変更
 function back(){
+	playbackTimeControl(-10);
+}
+function skip(){
+	playbackTimeControl(90);
+}
+function playbackTimeControl(time){
 	var media = document.getElementById("mv");
 	media.pause();
-	media.currentTime -= 10;
+	media.currentTime += time;
 	media.play();
+	media.defaultPlaybackRate = speed;
+
 }
+
+
+
+
+
+
+
+

@@ -7,7 +7,6 @@
 
 </head>
 <body>
-<input type="text" id="text" placeholder="videoのパス"><button type="button" onclick="setVideo()">読み込み</button>
 <video autobuffer controls id="mv" width="100%" src="../video.mp4">
 	<p>HTML5には対応していません</p>
 </video>
@@ -17,6 +16,12 @@
 <button type="button" onclick="speedChange(1)">加速</button><br>
 
 <button type="button" onclick="back()">10秒バック</button>
+<button type="button" onclick="skip()">90秒スキップ</button><br>
+<br>
+
+<!-- <form name="form"> -->
+	<input type="text" id="text" placeholder="videoのパス" onkeydown="enter()"><button type="button" onclick="setVideo()">読み込み</button>
+<!-- </form> -->
 
 </body>
 </html>

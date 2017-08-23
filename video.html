@@ -4,24 +4,56 @@
 	<meta charset="utf-8">
 	<title>video</title>
 	<script type="text/javascript" src="video.js"></script>
+	<style type="text/css">
+		td:nth-child(1){
+			width: 7em;
+		}
+		ul {
+			list-style:none;
+		}
+		li {
+			border-bottom: 1px solid;
+		}
+	</style>
 
 </head>
 <body>
-<video autobuffer controls id="mv" width="100%" src="../video.mp4">
+<video autobuffer controls id="mv" width="100%">
 	<p>HTML5には対応していません</p>
 </video>
-<p id="speedmeter">再生速度: 1</p>
+<table>
+	<tr>
+		<td id="speedmeter">再生速度: 1</td>
+		<td><input type="text" id="text" placeholder="videoのパス" onkeydown="enter()"><button type="button" onclick="setVideo()">読み込み</button><br></td>
+	</tr>
+</table>
+
 <button type="button" onclick="speedChange(-1)">減速</button>
 <button type="button" onclick="speedChange(0)">デフォ再生</button>
-<button type="button" onclick="speedChange(1)">加速</button><br>
-
-<button type="button" onclick="back()">10秒バック</button>
-<button type="button" onclick="skip()">90秒スキップ</button><br>
+<button type="button" onclick="speedChange(1)">加速</button>
 <br>
 
-<!-- <form name="form"> -->
-	<input type="text" id="text" placeholder="videoのパス" onkeydown="enter()"><button type="button" onclick="setVideo()">読み込み</button>
-<!-- </form> -->
+<!-- <select name="speed_pulldown">
+<option value="0.5">0.5x</option>
+<option value="1.0">1.0x</option>
+<option value="1.5">1.5x</option>
+<option value="2.0">2.0x</option>
+<option value="2.5">2.5x</option>
+<option value="3.0">3.0x</option>
+<option value="3.5">3.5x</option>
+<option value="4.0">4.0x</option>
+</select>
+<br> -->
 
+<button type="button" onclick="playbackTimeControl(-10)">10秒バック</button>
+<button type="button" onclick="playbackTimeControl(10)">10秒スキップ</button>
+<button type="button" onclick="playbackTimeControl(85)">OP.EDスキップ</button>
+<br>
+
+<div>
+	<p>履歴</p>
+	<ul id="history">
+	</ul>
+</div>
 </body>
 </html>

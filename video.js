@@ -1,44 +1,52 @@
 
-var speed = 1;
+var speed = 10;
 
 //再生速度の制御部分
 function speedChange(gear){
 	var media = document.getElementById("mv");
 	switch(gear){
 		case 1:		//加速
-			speed += 0.1;
+			speed += 1;
 			break;
 		case -1:	//減速
-			speed -= 0.1
+			speed -= 1
 			if (speed <= 0){
-				speed = 0.1;
+				speed = 1;
 			}
 			break;
 		case 0:		//通常再生速度
-			speed = 1;
+			speed = 10;
 			break;
 	}
-	speed *= 10;
-	speed = Math.floor(speed);
-	speed /= 10;
-	media.playbackRate = speed;
-	media.defaultPlaybackRate = speed;
+	// speed /= 10;
+	// speed = Math.floor(speed);
+	media.playbackRate = (speed / 10);
+	media.defaultPlaybackRate = (speed / 10);
 	media.pause();
 	media.play();
-	document.getElementById("speedmeter").innerHTML = "再生速度: " + String(speed);
+	document.getElementById("speedmeter").innerHTML = "再生速度: " + String((speed/10));
 }
 
 
 
 //動画のパスが入力された時その動画をセットする
 function setVideo(){
-	var pass = document.getElementById("text").value;
-	console.log(pass);
+	var videoUrl = document.getElementById("text").value;
+	console.log(videoUrl);
 	var media = document.getElementById("mv");
-	media.src = pass;
+	media.src = videoUrl;
 	document.getElementById("text").value = "";
+
+	setText(videoUrl);
 }
-function enter(){	//エンターキーでも反応するように
+//urlの一時保存？
+function setText(videoUrl){
+	var history_url = document.createElement("li");
+	history_url.innerHTML = '<a href="' + videoUrl + '" target="_blank">' + videoUrl + '</a>';
+	document.getElementById("history").appendChild(history_url);
+}
+//エンターキーでも反応するように
+function enter(){
 	if (window.event.keyCode == 13){
 		setVideo();
 	}
@@ -49,8 +57,8 @@ function enter(){	//エンターキーでも反応するように
 function back(){
 	playbackTimeControl(-10);
 }
-function skip(){
-	playbackTimeControl(90);
+function OpEd_dskip(){
+	playbackTimeControl(85);
 }
 function playbackTimeControl(time){
 	var media = document.getElementById("mv");

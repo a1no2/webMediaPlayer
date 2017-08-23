@@ -1,5 +1,5 @@
 
-var speed = 10;
+var speed = 10;		//再生速度 小数点で扱うと謎にずれるので割る10して扱う
 
 //再生速度の制御部分
 function speedChange(gear){
@@ -53,26 +53,13 @@ function enter(){
 }
 
 
-//動画の再生時間（今みてるとこ）の変更
-function back(){
-	playbackTimeControl(-10);
-}
-function OpEd_dskip(){
-	playbackTimeControl(85);
-}
+//動画の再生時間の変更 引数:移動させたい再生時間だけ+-
 function playbackTimeControl(time){
 	var media = document.getElementById("mv");
 	media.pause();
 	media.currentTime += time;
 	media.play();
-	media.defaultPlaybackRate = speed;
+	media.defaultPlaybackRate = (speed / 10);
 
 }
-
-
-
-
-
-
-
 
